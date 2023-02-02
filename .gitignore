@@ -1,0 +1,17 @@
+.DS_Store
+.idea
+.env
+.envrc
+.npmrc
+*.vscode
+*.tgz
+*.log*
+*.swp
+*.local
+*.iml
+*~
+
+dist/
+cache/
+src/*.md
+node_modules/

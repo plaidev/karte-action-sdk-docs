@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sdk-publish]
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+permissions:
+  contents: write
+  packages: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v3
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Setup npmrc
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+          echo '@plaidev:registry="https://npm.pkg.github.com"' >> .npmrc
+
+      - name: Install dependencies
+        run: pnpm install --no-lockfile
+
+      - name: Build docs
+        run: |
+          pnpm clean
+          pnpm gen
+          pnpm build
+          ls -lart docs
+
+      - name: Publish docs
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          file_pattern: 'docs/**'
+          commit_message: 'docs: updates'
