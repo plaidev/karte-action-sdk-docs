@@ -48,5 +48,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: main
-          file_pattern: 'docs/**'
-          commit_message: 'docs: updates'
+          file_pattern: "docs/**"
+          commit_message: "docs: updates"
