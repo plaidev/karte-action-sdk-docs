@@ -1,0 +1,10 @@
+blockExoticSubdeps: true
+
+minimumReleaseAge: 7200 # At least 5 days
+
+strictDepBuilds: true
+
+trustPolicy: no-downgrade
+
+# 任意で設定
+trustPolicyIgnoreAfter: 43200 # At least 30 days

@@ -7,7 +7,7 @@
     "url": "git+https://github.com/plaidev/karte-action-sdk-docs.git"
   },
   "main": "index.js",
-  "packageManager": "pnpm@7.26.0",
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "gen": "api-documenter markdown --input-folder ./node_modules/@plaidev/karte-action-sdk/meta --output-folder ./temp && mv ./temp/* ./src",
     "dev": "vitepress dev src",
